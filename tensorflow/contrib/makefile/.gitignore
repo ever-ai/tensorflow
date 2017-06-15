@@ -1,2 +1,7 @@
-gen/
+# Don't exclude the entire gen/ folder b/c it has build artifacts we want to keep in our submodule -DH 
+#gen/
+
+# Do exclude the lib/ folder b/c the tensorflow static libs are too large for GitHub (and you can't use git lfs with a public fork)
+gen/lib
+
 downloads/
