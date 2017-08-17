@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7S/tensorflow/core/lib/hash/crc32c.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7S/tensorflow/core/lib/hash/crc32c.o: \
   tensorflow/core/lib/hash/crc32c.cc tensorflow/core/lib/hash/crc32c.h \
   tensorflow/core/platform/types.h tensorflow/core/platform/platform.h \
   tensorflow/core/platform/default/integral_types.h \

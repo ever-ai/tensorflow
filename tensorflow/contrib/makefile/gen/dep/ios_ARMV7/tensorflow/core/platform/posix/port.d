@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7/tensorflow/core/platform/posix/port.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7/tensorflow/core/platform/posix/port.o: \
   tensorflow/core/platform/posix/port.cc \
   tensorflow/core/platform/cpu_info.h tensorflow/core/platform/logging.h \
   tensorflow/core/platform/platform.h \

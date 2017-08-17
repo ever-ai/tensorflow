@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7/tensorflow/core/platform/profile_utils/cpu_utils.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7/tensorflow/core/platform/profile_utils/cpu_utils.o: \
   tensorflow/core/platform/profile_utils/cpu_utils.cc \
   tensorflow/core/platform/profile_utils/cpu_utils.h \
   tensorflow/core/platform/macros.h \

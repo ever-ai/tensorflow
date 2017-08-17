@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_X86_64/tensorflow/core/platform/cpu_info.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_X86_64/tensorflow/core/platform/cpu_info.o: \
   tensorflow/core/platform/cpu_info.cc \
   tensorflow/core/platform/cpu_info.h tensorflow/core/platform/logging.h \
   tensorflow/core/platform/platform.h \

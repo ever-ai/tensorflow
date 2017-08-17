@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARM64/tensorflow/core/lib/random/random.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARM64/tensorflow/core/lib/random/random.o: \
   tensorflow/core/lib/random/random.cc \
   tensorflow/core/lib/random/random.h tensorflow/core/platform/types.h \
   tensorflow/core/platform/platform.h \

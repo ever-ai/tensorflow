@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_X86_64/tensorflow/core/lib/core/coding.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_X86_64/tensorflow/core/lib/core/coding.o: \
   tensorflow/core/lib/core/coding.cc tensorflow/core/lib/core/coding.h \
   tensorflow/core/lib/core/raw_coding.h \
   tensorflow/core/platform/cpu_info.h tensorflow/core/platform/types.h \

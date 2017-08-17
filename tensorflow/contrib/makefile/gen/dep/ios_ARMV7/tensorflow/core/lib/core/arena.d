@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7/tensorflow/core/lib/core/arena.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7/tensorflow/core/lib/core/arena.o: \
   tensorflow/core/lib/core/arena.cc tensorflow/core/lib/core/arena.h \
   tensorflow/core/platform/logging.h tensorflow/core/platform/platform.h \
   tensorflow/core/platform/default/logging.h \
