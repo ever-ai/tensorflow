@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARM64/tensorflow/core/lib/core/stringpiece.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARM64/tensorflow/core/lib/core/stringpiece.o: \
   tensorflow/core/lib/core/stringpiece.cc \
   tensorflow/core/lib/core/stringpiece.h \
   tensorflow/core/platform/types.h tensorflow/core/platform/platform.h \

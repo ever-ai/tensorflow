@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7S/tensorflow/core/lib/strings/str_util.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7S/tensorflow/core/lib/strings/str_util.o: \
   tensorflow/core/lib/strings/str_util.cc \
   tensorflow/core/lib/strings/str_util.h \
   tensorflow/core/lib/core/stringpiece.h \

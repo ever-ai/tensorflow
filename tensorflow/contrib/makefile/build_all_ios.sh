@@ -46,7 +46,7 @@ tensorflow/contrib/makefile/download_dependencies.sh
 tensorflow/contrib/makefile/compile_ios_protobuf.sh
 
 # Build the iOS TensorFlow libraries.
-tensorflow/contrib/makefile/compile_ios_tensorflow.sh "-O3"
+tensorflow/contrib/makefile/compile_ios_tensorflow.sh "-Os -DSELECTIVE_REGISTRATION -DSUPPORT_SELECTIVE_REGISTRATION"
 
 # Creates a static universal library in 
 # tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a

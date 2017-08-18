@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_X86_64/tensorflow/core/platform/default/logging.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_X86_64/tensorflow/core/platform/default/logging.o: \
   tensorflow/core/platform/default/logging.cc \
   tensorflow/core/platform/default/logging.h \
   tensorflow/core/platform/macros.h tensorflow/core/platform/types.h \

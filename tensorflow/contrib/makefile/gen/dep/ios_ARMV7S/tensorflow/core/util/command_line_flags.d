@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7S/tensorflow/core/util/command_line_flags.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7S/tensorflow/core/util/command_line_flags.o: \
   tensorflow/core/util/command_line_flags.cc \
   tensorflow/core/lib/core/stringpiece.h \
   tensorflow/core/platform/types.h tensorflow/core/platform/platform.h \

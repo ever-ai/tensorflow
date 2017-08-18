@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_I386/tensorflow/core/lib/core/bitmap.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_I386/tensorflow/core/lib/core/bitmap.o: \
   tensorflow/core/lib/core/bitmap.cc tensorflow/core/lib/core/bitmap.h \
   tensorflow/core/platform/logging.h tensorflow/core/platform/platform.h \
   tensorflow/core/platform/default/logging.h \

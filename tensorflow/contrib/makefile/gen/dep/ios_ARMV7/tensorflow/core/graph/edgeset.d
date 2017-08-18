@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7/tensorflow/core/graph/edgeset.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7/tensorflow/core/graph/edgeset.o: \
   tensorflow/core/graph/edgeset.cc tensorflow/core/graph/edgeset.h \
   tensorflow/core/platform/macros.h tensorflow/core/platform/types.h \
   tensorflow/core/platform/platform.h \

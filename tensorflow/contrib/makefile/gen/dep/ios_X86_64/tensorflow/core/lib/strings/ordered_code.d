@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_X86_64/tensorflow/core/lib/strings/ordered_code.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_X86_64/tensorflow/core/lib/strings/ordered_code.o: \
   tensorflow/core/lib/strings/ordered_code.cc \
   tensorflow/core/lib/strings/ordered_code.h \
   tensorflow/core/platform/macros.h tensorflow/core/platform/types.h \

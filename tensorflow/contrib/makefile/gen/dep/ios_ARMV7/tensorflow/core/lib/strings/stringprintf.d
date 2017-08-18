@@ -1,4 +1,4 @@
-/Users/don/src/ever/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7/tensorflow/core/lib/strings/stringprintf.o: \
+/Users/jason/everalbum/ios/submodules/tensorflow/tensorflow/contrib/makefile/gen/obj/ios_ARMV7/tensorflow/core/lib/strings/stringprintf.o: \
   tensorflow/core/lib/strings/stringprintf.cc \
   tensorflow/core/lib/strings/stringprintf.h \
   tensorflow/core/platform/macros.h tensorflow/core/platform/types.h \
