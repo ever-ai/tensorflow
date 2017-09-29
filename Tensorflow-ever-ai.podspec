@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   
   s.platform        = :ios, '9.0'
   
-  s.source          = { :http => 'https://download.everalbum.com/ios/deps/tensorflow/#{s.version}/tensorflow.zip' }
+  s.source          = { :http => "https://download.everalbum.com/ios/deps/tensorflow/#{s.version}/tensorflow.zip" }
   s.preserve_paths  = 'include/**'
   
   s.ios.framework  = 'Accelerate'
