@@ -23,15 +23,15 @@ rsync -a -R --include '*' ./tensorflow/contrib/makefile/downloads/eigen/Eigen $E
 
 # Copy the built static libraries we need
 # Destination: $EXPORT_DIRECTORY/lib
-cp tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a $EXPORT_DIRECTORY/lib
-cp tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf-lite.a $EXPORT_DIRECTORY/lib
-cp tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf.a $EXPORT_DIRECTORY/lib
+cp tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a $EXPORT_DIRECTORY/lib/libtensorflow-core-eai.a 
+cp tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf-lite.a $EXPORT_DIRECTORY/lib/libprotobuf-lite-eai.a
+cp tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf.a $EXPORT_DIRECTORY/lib/libprotobuf-eai.a
 
 echo "*******************************************************************************************"
 echo "*                                                                                         *"
 echo "*                                   Done Exporting                                        *"
 echo "*                                                                                         *"
-echo "*   Make sure to check that libtensorflow-core.a is in $EXPORT_DIRECTORY/lib              *"
+echo "*   Make sure to check that libtensorflow-core-eai.a is in $EXPORT_DIRECTORY/lib          *"
 echo "*   This file is .gitignored in this repo because it is >400MB                            *"
 echo "*   If you haven't just rebuilt tensorflow from source you may need to manually add it.   *"
 echo "*                                                                                         *"

@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.preserve_paths  = 'include/**'
   
   s.ios.framework  = 'Accelerate'
-  s.ios.vendored_libraries = 'lib/libtensorflow-core.a', 'lib/libprotobuf-lite.a', 'lib/libprotobuf.a'
+  s.ios.vendored_libraries = 'lib/libtensorflow-core-eai.a', 'lib/libprotobuf-lite-eai.a', 'lib/libprotobuf-eai.a'
 
   s.xcconfig = { 
     'HEADER_SEARCH_PATHS' => [
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
       '${PODS_ROOT}/#{s.name}/include/tensorflow/contrib/makefile/downloads/eigen',
       '${PODS_ROOT}/#{s.name}/include/tensorflow/contrib/makefile/gen/proto',
     ],
-    'OTHER_LDFLAGS' => '-force_load $(PODS_ROOT)/#{s.name}/lib/libtensorflow-core.a' 
+    'OTHER_LDFLAGS' => '-force_load $(PODS_ROOT)/#{s.name}/lib/libtensorflow-core-eai.a' 
   }
   s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
 
