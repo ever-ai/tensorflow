@@ -54,7 +54,7 @@ TARGET_NSYNC_LIB=`tensorflow/contrib/makefile/compile_nsync.sh -t ios`
 export HOST_NSYNC_LIB TARGET_NSYNC_LIB
 
 # Build the iOS TensorFlow libraries.
-tensorflow/contrib/makefile/compile_ios_tensorflow.sh "-O3"
+tensorflow/contrib/makefile/compile_ios_tensorflow.sh "-Os -DSELECTIVE_REGISTRATION"
 
 # Creates a static universal library in
 # tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a
