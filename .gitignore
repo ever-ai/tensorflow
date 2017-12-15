@@ -34,3 +34,6 @@ xcuserdata/**
 *.iml
 local.properties
 gradleBuild
+
+# EverAI
+tensorflow_export
