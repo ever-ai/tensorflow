@@ -53,4 +53,4 @@ echo "**************************************************************************
 echo ''
 echo "Upload to S3 using:"
 echo "aws s3 cp $EXPORT_DIRECTORY/tensorflow.zip \\"
-echo "    \"s3://download.everalbum.com/ios/deps/tensorflow/$VERSION/tensorflow.zip\" --acl public-read"
+echo "    \"s3://ever-ai/ios/tensorflow/$VERSION/tensorflow.zip\" --acl public-read"

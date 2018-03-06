@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name            = "Tensorflow-ever-ai"
-  s.version         = "1.4.0"
+  s.version         = "1.6.0"
   s.summary         = "Ever.ai Tensorflow Fork"
   s.homepage        = "https://github.com/everalbum/tensorflow"
   s.license         = "MIT"
