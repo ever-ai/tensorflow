@@ -28,30 +28,36 @@
       };
     }  // end namespace
     constexpr const char* kNecessaryOpKernelClasses[] = {
+"UnaryOp< CPUDevice, functor::abs<float>>",
 "BinaryOp< CPUDevice, functor::add<float>>",
-"AvgPoolingOp<CPUDevice, float>",
-"ConcatV2Op<CPUDevice, float>",
 "ConstantOp",
-"Conv2DUsingGemmOp< float, Im2ColConvFunctor<float, float, float, FastGemmFunctor<float, float, float>>>",
-"IdentityOp",
-"MatMulOp<CPUDevice, float, false >",
-"MaxPoolingOp<CPUDevice, float>",
+"DequantizeOp<CPUDevice, quint8>",
+"ExpandDimsOp<int32>",
+"ReductionOp<CPUDevice, float, int32, Eigen::internal::MaxReducer<float>>",
 "BinaryOp< CPUDevice, functor::maximum<float>>",
-"ReductionOp<CPUDevice, float, Eigen::internal::MeanReducer<float>>",
-"MergeOp",
+"ReductionOp<CPUDevice, float, int32, Eigen::internal::MeanReducer<float>>",
+"ReductionOp<CPUDevice, float, int32, Eigen::internal::MinReducer<float>>",
 "BinaryOp< CPUDevice, functor::mul<float>>",
+"UnaryOp< CPUDevice, functor::neg<float>>",
 "NoOp",
 "PlaceholderOp",
-"ReluOp<CPUDevice, float>",
+"QuantizeV2Op<CPUDevice, quint8>",
+"QuantizedAvgPoolingOp<CPUDevice, quint8>",
+"QuantizedBiasAddOp<quint8, quint8, qint32>",
+"QuantizedConv2DOp<quint8, quint8, qint32, Im2ColConvFunctor>",
+"QuantizedMaxPoolingOp<CPUDevice, quint8>",
+"QuantizedReluOp<quint8>",
+"RequantizationRangeOp",
+"RequantizeOp<qint32, quint8>",
 "ReshapeOp",
 "UnaryOp< CPUDevice, functor::rsqrt<float>>",
+"SelectOp<CPUDevice, float>",
 "UnaryOp< CPUDevice, functor::square<float>>",
 "BinaryOp< CPUDevice, functor::squared_difference<float>>",
 "SqueezeOp",
 "IdentityOp",
 "BinaryOp< CPUDevice, functor::sub<float>>",
-"ReductionOp<CPUDevice, float, Eigen::internal::SumReducer<float>>",
-"SwitchOp",
+"ReductionOp<CPUDevice, float, int32, Eigen::internal::SumReducer<float>>",
 "RecvOp",
 "SendOp",
 };
@@ -59,30 +65,36 @@
 
 constexpr inline bool ShouldRegisterOp(const char op[]) {
   return false
+     || isequal(op, "Abs")
      || isequal(op, "Add")
-     || isequal(op, "AvgPool")
-     || isequal(op, "ConcatV2")
      || isequal(op, "Const")
-     || isequal(op, "Conv2D")
-     || isequal(op, "Identity")
-     || isequal(op, "MatMul")
-     || isequal(op, "MaxPool")
+     || isequal(op, "Dequantize")
+     || isequal(op, "ExpandDims")
+     || isequal(op, "Max")
      || isequal(op, "Maximum")
      || isequal(op, "Mean")
-     || isequal(op, "Merge")
+     || isequal(op, "Min")
      || isequal(op, "Mul")
+     || isequal(op, "Neg")
      || isequal(op, "NoOp")
      || isequal(op, "Placeholder")
-     || isequal(op, "Relu")
+     || isequal(op, "QuantizeV2")
+     || isequal(op, "QuantizedAvgPool")
+     || isequal(op, "QuantizedBiasAdd")
+     || isequal(op, "QuantizedConv2D")
+     || isequal(op, "QuantizedMaxPool")
+     || isequal(op, "QuantizedRelu")
+     || isequal(op, "RequantizationRange")
+     || isequal(op, "Requantize")
      || isequal(op, "Reshape")
      || isequal(op, "Rsqrt")
+     || isequal(op, "Select")
      || isequal(op, "Square")
      || isequal(op, "SquaredDifference")
      || isequal(op, "Squeeze")
      || isequal(op, "StopGradient")
      || isequal(op, "Sub")
      || isequal(op, "Sum")
-     || isequal(op, "Switch")
      || isequal(op, "_Recv")
      || isequal(op, "_Send")
   ;
