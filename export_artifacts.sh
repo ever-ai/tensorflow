@@ -3,8 +3,17 @@
 # This script will export all of the required header files and static libraries necessary to run tensorflow on iOS
 #
 
-EXPORT_DIRECTORY=./tensorflow_export
+read -p "Bucket name [ever-ai]: " BUCKET_NAME
+BUCKET_NAME="${BUCKET_NAME:-ever-ai}"
+
+read -p "Model name: " MODEL_NAME
+
 VERSION=`(git describe HEAD --tags --abbrev=0 || echo "[[VERSION]]") | sed -e "s/^v//"`
+read -p "Tensorflow version [$VERSION]: " INPUT_VERSION
+VERSION="${INPUT_VERSION:-$VERSION}"
+
+EXPORT_DIRECTORY=./tensorflow_export
+
 
 # Cleanup existing $EXPORT_DIRECTORY
 rm -rf $EXPORT_DIRECTORY
@@ -41,6 +50,13 @@ echo "Creating archive..."
 cd $EXPORT_DIRECTORY
 zip -rq tensorflow.zip ./*
 
+PODSPEC_FILENAME="Tensorflow-$MODEL_NAME.podspec"
+
+cp ../Tensorflow-ever-ai.podspec "$PODSPEC_FILENAME"
+sed -i '' "s/model = \"[^\"]*\"/model = \"$MODEL_NAME\"/" "$PODSPEC_FILENAME"
+sed -i '' "s/bucket = \"[^\"]*\"/bucket = \"$BUCKET_NAME\"/" "$PODSPEC_FILENAME"
+sed -i '' -E "s/(.*\.version[[:space:]]*=[[:space:]]*)\"[^\"]*\"/\\1\"$VERSION\"/" "$PODSPEC_FILENAME"
+
 echo "*******************************************************************************************"
 echo "*                                                                                         *"
 echo "*                                   Done Exporting                                        *"
@@ -51,12 +67,33 @@ echo "*   If you haven't just rebuilt tensorflow from source you may need to man
 echo "*                                                                                         *"
 echo "*******************************************************************************************"
 echo ""
-echo "Upload to S3 using either:"
-echo ""
-echo "FOR USE IN Ever iOS:"
-echo "aws s3 cp $EXPORT_DIRECTORY/tensorflow.zip \\"
-echo "    \"s3://download.everalbum.com/ios/deps/tensorflow/$VERSION/tensorflow.zip\" --acl public-read"
-echo ""
-echo "FOR USE IN EverAI iOS SDK:"
-echo "aws s3 cp $EXPORT_DIRECTORY/tensorflow.zip \\"
-echo "    \"s3://ever-ai/ios/tensorflow/$VERSION/tensorflow.zip\" --acl public-read"
+
+if [ "$BUCKET_NAME" = "ever-ai" ]; then
+    if [ "$MODEL_NAME" = "" ]; then
+        MODEL_PATH=""
+    else
+        MODEL_PATH="/$MODEL_NAME"
+    fi
+    echo "Upload to S3 using:"
+    echo "aws s3 cp $EXPORT_DIRECTORY/tensorflow.zip \\"
+    echo "    \"s3://ever-ai/ios/tensorflow$MODEL_PATH/$VERSION/tensorflow.zip\" --acl public-read"
+    echo ""
+    echo "Add the podspec to the Specs repo using:"
+    echo "    pod repo push --allow-warnings --skip-import-validation ever-ai \\"
+    echo "        \"$EXPORT_DIRECTORY/$PODSPEC_FILENAME\""
+elif [ "$BUCKET_NAME" = "download.everalbum.com" ]; then
+    echo "Upload to S3 using:"
+    echo "aws s3 cp $EXPORT_DIRECTORY/tensorflow.zip \\"
+    echo "    \"s3://download.everalbum.com/ios/deps/tensorflow/$VERSION/tensorflow.zip\" --acl public-read"
+    echo ""
+        echo "Add the podspec to the Specs repo using:"
+    echo "    pod repo push --allow-warnings --skip-import-validation everalbum \\"
+    echo "        \"$EXPORT_DIRECTORY/$PODSPEC_FILENAME\""
+else
+    echo "Updated:"
+    echo "    $EXPORT_DIRECTORY/$PODSPEC_FILENAME"
+    echo "which you can lint via:"
+    echo "    pod spec lint --quick --private \"$EXPORT_DIRECTORY/$PODSPEC_FILENAME\""
+    echo "and you'll want to add the podspec to the Specs repo under:"
+    echo "    Tensorflow-$MODEL_NAME/$VERSION/$PODSPEC_FILENAME"
+fi
