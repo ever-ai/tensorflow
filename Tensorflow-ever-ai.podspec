@@ -1,15 +1,20 @@
+model = ""
+bucket = "ever-ai"
+
+model_path = model.length > 0 ? "/#{model}" : ""
+
 Pod::Spec.new do |s|
 
-  s.name            = "Tensorflow-ever-ai"
+  s.name            = "Tensorflow-#{model}"
   s.version         = "1.7.0"
-  s.summary         = "Ever.ai Tensorflow Fork"
-  s.homepage        = "https://github.com/everalbum/tensorflow"
+  s.summary         = "Ever.ai Tensorflow Fork for #{model} model"
+  s.homepage        = "https://github.com/tensorflow/tensorflow"
   s.license         = "MIT"
   s.author          = { "ever.ai" => "ops@ever.ai" }
 
   s.platform        = :ios, "9.0"
 
-  s.source          = { :http => "https://download.everalbum.com/ios/deps/tensorflow/#{s.version}/tensorflow.zip" }
+  s.source          = { :http => "https://#{bucket}.s3.amazonaws.com/ios/tensorflow#{model_path}/#{s.version}/tensorflow.zip" }
   s.preserve_paths  = "include/**"
 
   s.ios.framework  = "Accelerate"
