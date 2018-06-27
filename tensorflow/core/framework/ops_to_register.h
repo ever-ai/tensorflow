@@ -28,36 +28,96 @@
       };
     }  // end namespace
     constexpr const char* kNecessaryOpKernelClasses[] = {
-"UnaryOp< CPUDevice, functor::abs<float>>",
-"BinaryOp< CPUDevice, functor::add<float>>",
+"UnaryOp<CPUDevice, functor::abs<float>>",
+"BinaryOp<CPUDevice, functor::add<float>>",
+"BinaryOp<CPUDevice, functor::add<int32>>",
+"BinaryOp<CPUDevice, functor::add<int64>>",
+"ReductionOp<CPUDevice, bool, int32, Eigen::internal::AndReducer>",
+"ArgMaxOp<CPUDevice, float, int64>",
+"AssertOp",
+"AvgPoolingOp<CPUDevice, float>",
+"BiasOp<CPUDevice, float>",
+"CpuCastOp",
+"ConcatV2Op<CPUDevice, float>",
 "ConstantOp",
-"DequantizeOp<CPUDevice, quint8>",
+"Conv2DOp<CPUDevice, float>",
+"EnterOp",
+"ExitOp",
+"UnaryOp<CPUDevice, functor::exp<float>>",
 "ExpandDimsOp<int32>",
-"ReductionOp<CPUDevice, float, int32, Eigen::internal::MaxReducer<float>>",
-"BinaryOp< CPUDevice, functor::maximum<float>>",
+"UnaryOp<CPUDevice, functor::floor<double>>",
+"BinaryOp<CPUDevice, functor::safe_floor_div<int32>>",
+"FusedBatchNormOp<CPUDevice, float, float>",
+"GatherOp<CPUDevice, float, int32>",
+"BinaryOp<CPUDevice, functor::greater<float>>",
+"BinaryOp<CPUDevice, functor::greater<int32>>",
+"BinaryOp<CPUDevice, functor::greater_equal<float>>",
+"BinaryOp<CPUDevice, functor::greater_equal<int32>>",
+"IdentityOp",
+"ImageProjectiveTransform<CPUDevice, ::tensorflow::uint8>",
+"BinaryOp<CPUDevice, functor::less<int32>>",
+"LoopCondOp",
+"MatMulOp<CPUDevice, float, false >",
+"MaxPoolingOp<CPUDevice, float>",
+"BinaryOp<CPUDevice, functor::maximum<float>>",
+"BinaryOp<CPUDevice, functor::maximum<int32>>",
 "ReductionOp<CPUDevice, float, int32, Eigen::internal::MeanReducer<float>>",
-"ReductionOp<CPUDevice, float, int32, Eigen::internal::MinReducer<float>>",
-"BinaryOp< CPUDevice, functor::mul<float>>",
-"UnaryOp< CPUDevice, functor::neg<float>>",
+"MergeOp",
+"BinaryOp<CPUDevice, functor::minimum<double>>",
+"BinaryOp<CPUDevice, functor::minimum<float>>",
+"BinaryOp<CPUDevice, functor::minimum<int32>>",
+"BinaryOp<CPUDevice, functor::mul<double>>",
+"BinaryOp<CPUDevice, functor::mul<float>>",
+"UnaryOp<CPUDevice, functor::neg<float>>",
+"UnaryOp<CPUDevice, functor::neg<int32>>",
+"NextIterationOp",
 "NoOp",
+"NonMaxSuppressionV2Op<CPUDevice>",
+"PackOp<CPUDevice, ::tensorflow::int32>",
+"PackOp<CPUDevice, ::tensorflow::int64>",
+"PackOp<CPUDevice, float>",
+"PadOp<CPUDevice, ::tensorflow::uint8, int32>",
+"PadOp<CPUDevice, float, int32>",
 "PlaceholderOp",
-"QuantizeV2Op<CPUDevice, quint8>",
-"QuantizedAvgPoolingOp<CPUDevice, quint8>",
-"QuantizedBiasAddOp<quint8, quint8, qint32>",
-"QuantizedConv2DOp<quint8, quint8, qint32, Im2ColConvFunctor>",
-"QuantizedMaxPoolingOp<CPUDevice, quint8>",
-"QuantizedReluOp<quint8>",
-"RequantizationRangeOp",
-"RequantizeOp<qint32, quint8>",
+"BinaryOp<CPUDevice, functor::pow<float>>",
+"RangeOp<::tensorflow::int32>",
+"RankOp",
+"BinaryOp<CPUDevice, functor::div<double>>",
+"BinaryOp<CPUDevice, functor::div<float>>",
+"ReluOp<CPUDevice, float>",
 "ReshapeOp",
-"UnaryOp< CPUDevice, functor::rsqrt<float>>",
-"SelectOp<CPUDevice, float>",
-"UnaryOp< CPUDevice, functor::square<float>>",
-"BinaryOp< CPUDevice, functor::squared_difference<float>>",
+"ResizeBilinearOp<CPUDevice, ::tensorflow::uint8>",
+"ResizeBilinearOp<CPUDevice, float>",
+"UnaryOp<CPUDevice, functor::rsqrt<float>>",
+"ShapeOp<int32>",
+"SliceOp<CPUDevice, ::tensorflow::uint8>",
+"SliceOp<CPUDevice, float>",
+"SoftmaxOp<CPUDevice, float>",
+"UnaryOp<CPUDevice, functor::sqrt<float>>",
+"UnaryOp<CPUDevice, functor::square<float>>",
+"BinaryOp<CPUDevice, functor::squared_difference<float>>",
 "SqueezeOp",
 "IdentityOp",
-"BinaryOp< CPUDevice, functor::sub<float>>",
+"StridedSliceOp<CPUDevice, ::tensorflow::int32>",
+"StridedSliceOp<CPUDevice, float>",
+"BinaryOp<CPUDevice, functor::sub<float>>",
+"BinaryOp<CPUDevice, functor::sub<int32>>",
 "ReductionOp<CPUDevice, float, int32, Eigen::internal::SumReducer<float>>",
+"(SvdOp<float>)",
+"SwitchOp",
+"TensorArrayPackOrGatherOp<CPUDevice, float, false >",
+"TensorArrayReadOp<CPUDevice, ::tensorflow::int32>",
+"TensorArrayReadOp<CPUDevice, float>",
+"TensorArrayUnpackOrScatterOp<CPUDevice, ::tensorflow::int32, false >",
+"TensorArrayUnpackOrScatterOp<CPUDevice, float, false >",
+"TensorArraySizeOp",
+"TensorArrayOp",
+"TensorArrayWriteOp<CPUDevice, float>",
+"TileOp<CPUDevice, int32>",
+"TopK<CPUDevice, float>",
+"TransposeCpuOp",
+"UnpackOp<CPUDevice, ::tensorflow::int32>",
+"UnpackOp<CPUDevice, float>",
 "RecvOp",
 "SendOp",
 };
@@ -67,34 +127,74 @@ constexpr inline bool ShouldRegisterOp(const char op[]) {
   return false
      || isequal(op, "Abs")
      || isequal(op, "Add")
+     || isequal(op, "All")
+     || isequal(op, "ArgMax")
+     || isequal(op, "Assert")
+     || isequal(op, "AvgPool")
+     || isequal(op, "BiasAdd")
+     || isequal(op, "Cast")
+     || isequal(op, "ConcatV2")
      || isequal(op, "Const")
-     || isequal(op, "Dequantize")
+     || isequal(op, "Conv2D")
+     || isequal(op, "Enter")
+     || isequal(op, "Exit")
+     || isequal(op, "Exp")
      || isequal(op, "ExpandDims")
-     || isequal(op, "Max")
+     || isequal(op, "Floor")
+     || isequal(op, "FloorDiv")
+     || isequal(op, "FusedBatchNorm")
+     || isequal(op, "GatherV2")
+     || isequal(op, "Greater")
+     || isequal(op, "GreaterEqual")
+     || isequal(op, "Identity")
+     || isequal(op, "ImageProjectiveTransform")
+     || isequal(op, "Less")
+     || isequal(op, "LoopCond")
+     || isequal(op, "MatMul")
+     || isequal(op, "MaxPool")
      || isequal(op, "Maximum")
      || isequal(op, "Mean")
-     || isequal(op, "Min")
+     || isequal(op, "Merge")
+     || isequal(op, "Minimum")
      || isequal(op, "Mul")
      || isequal(op, "Neg")
+     || isequal(op, "NextIteration")
      || isequal(op, "NoOp")
+     || isequal(op, "NonMaxSuppressionV2")
+     || isequal(op, "Pack")
+     || isequal(op, "Pad")
      || isequal(op, "Placeholder")
-     || isequal(op, "QuantizeV2")
-     || isequal(op, "QuantizedAvgPool")
-     || isequal(op, "QuantizedBiasAdd")
-     || isequal(op, "QuantizedConv2D")
-     || isequal(op, "QuantizedMaxPool")
-     || isequal(op, "QuantizedRelu")
-     || isequal(op, "RequantizationRange")
-     || isequal(op, "Requantize")
+     || isequal(op, "Pow")
+     || isequal(op, "Range")
+     || isequal(op, "Rank")
+     || isequal(op, "RealDiv")
+     || isequal(op, "Relu")
      || isequal(op, "Reshape")
+     || isequal(op, "ResizeBilinear")
      || isequal(op, "Rsqrt")
-     || isequal(op, "Select")
+     || isequal(op, "Shape")
+     || isequal(op, "Slice")
+     || isequal(op, "Softmax")
+     || isequal(op, "Sqrt")
      || isequal(op, "Square")
      || isequal(op, "SquaredDifference")
      || isequal(op, "Squeeze")
      || isequal(op, "StopGradient")
+     || isequal(op, "StridedSlice")
      || isequal(op, "Sub")
      || isequal(op, "Sum")
+     || isequal(op, "Svd")
+     || isequal(op, "Switch")
+     || isequal(op, "TensorArrayGatherV3")
+     || isequal(op, "TensorArrayReadV3")
+     || isequal(op, "TensorArrayScatterV3")
+     || isequal(op, "TensorArraySizeV3")
+     || isequal(op, "TensorArrayV3")
+     || isequal(op, "TensorArrayWriteV3")
+     || isequal(op, "Tile")
+     || isequal(op, "TopKV2")
+     || isequal(op, "Transpose")
+     || isequal(op, "Unpack")
      || isequal(op, "_Recv")
      || isequal(op, "_Send")
   ;
