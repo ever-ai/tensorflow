@@ -31,20 +31,23 @@
 "UnaryOp<CPUDevice, functor::abs<float>>",
 "BinaryOp<CPUDevice, functor::add<float>>",
 "BinaryOp<CPUDevice, functor::add<int32>>",
-"BinaryOp<CPUDevice, functor::add<int64>>",
 "ReductionOp<CPUDevice, bool, int32, Eigen::internal::AndReducer>",
-"ArgMaxOp<CPUDevice, float, int64>",
 "AssertOp",
-"AvgPoolingOp<CPUDevice, float>",
 "BiasOp<CPUDevice, float>",
 "CpuCastOp",
+"ConcatV2Op<CPUDevice, ::tensorflow::uint8>",
+"ConcatV2Op<CPUDevice, bool>",
 "ConcatV2Op<CPUDevice, float>",
 "ConstantOp",
 "Conv2DOp<CPUDevice, float>",
+"DequantizeOp<CPUDevice, quint8>",
 "EnterOp",
 "ExitOp",
 "UnaryOp<CPUDevice, functor::exp<float>>",
 "ExpandDimsOp<int32>",
+"FillOp<CPUDevice, ::tensorflow::uint8, int32>",
+"FillOp<CPUDevice, bool, int32>",
+"FillOp<CPUDevice, float, int32>",
 "UnaryOp<CPUDevice, functor::floor<double>>",
 "BinaryOp<CPUDevice, functor::safe_floor_div<int32>>",
 "FusedBatchNormOp<CPUDevice, float, float>",
@@ -56,6 +59,7 @@
 "IdentityOp",
 "ImageProjectiveTransform<CPUDevice, ::tensorflow::uint8>",
 "BinaryOp<CPUDevice, functor::less<int32>>",
+"BinaryOp<CPUDevice, functor::logical_and>",
 "LoopCondOp",
 "MatMulOp<CPUDevice, float, false >",
 "MaxPoolingOp<CPUDevice, float>",
@@ -68,18 +72,17 @@
 "BinaryOp<CPUDevice, functor::minimum<int32>>",
 "BinaryOp<CPUDevice, functor::mul<double>>",
 "BinaryOp<CPUDevice, functor::mul<float>>",
-"UnaryOp<CPUDevice, functor::neg<float>>",
 "UnaryOp<CPUDevice, functor::neg<int32>>",
 "NextIterationOp",
 "NoOp",
 "NonMaxSuppressionV2Op<CPUDevice>",
+"BinaryOp<CPUDevice, functor::not_equal_to<float>>",
 "PackOp<CPUDevice, ::tensorflow::int32>",
 "PackOp<CPUDevice, ::tensorflow::int64>",
 "PackOp<CPUDevice, float>",
 "PadOp<CPUDevice, ::tensorflow::uint8, int32>",
 "PadOp<CPUDevice, float, int32>",
 "PlaceholderOp",
-"BinaryOp<CPUDevice, functor::pow<float>>",
 "RangeOp<::tensorflow::int32>",
 "RankOp",
 "BinaryOp<CPUDevice, functor::div<double>>",
@@ -90,6 +93,7 @@
 "ResizeBilinearOp<CPUDevice, float>",
 "UnaryOp<CPUDevice, functor::rsqrt<float>>",
 "ShapeOp<int32>",
+"UnaryOp<CPUDevice, functor::sigmoid<float>>",
 "SliceOp<CPUDevice, ::tensorflow::uint8>",
 "SliceOp<CPUDevice, float>",
 "SoftmaxOp<CPUDevice, float>",
@@ -99,9 +103,12 @@
 "SqueezeOp",
 "IdentityOp",
 "StridedSliceOp<CPUDevice, ::tensorflow::int32>",
+"StridedSliceOp<CPUDevice, ::tensorflow::uint8>",
+"StridedSliceOp<CPUDevice, bool>",
 "StridedSliceOp<CPUDevice, float>",
 "BinaryOp<CPUDevice, functor::sub<float>>",
 "BinaryOp<CPUDevice, functor::sub<int32>>",
+"ReductionOp<CPUDevice, ::tensorflow::int64, int32, Eigen::internal::SumReducer<::tensorflow::int64>>",
 "ReductionOp<CPUDevice, float, int32, Eigen::internal::SumReducer<float>>",
 "(SvdOp<float>)",
 "SwitchOp",
@@ -128,18 +135,18 @@ constexpr inline bool ShouldRegisterOp(const char op[]) {
      || isequal(op, "Abs")
      || isequal(op, "Add")
      || isequal(op, "All")
-     || isequal(op, "ArgMax")
      || isequal(op, "Assert")
-     || isequal(op, "AvgPool")
      || isequal(op, "BiasAdd")
      || isequal(op, "Cast")
      || isequal(op, "ConcatV2")
      || isequal(op, "Const")
      || isequal(op, "Conv2D")
+     || isequal(op, "Dequantize")
      || isequal(op, "Enter")
      || isequal(op, "Exit")
      || isequal(op, "Exp")
      || isequal(op, "ExpandDims")
+     || isequal(op, "Fill")
      || isequal(op, "Floor")
      || isequal(op, "FloorDiv")
      || isequal(op, "FusedBatchNorm")
@@ -149,6 +156,7 @@ constexpr inline bool ShouldRegisterOp(const char op[]) {
      || isequal(op, "Identity")
      || isequal(op, "ImageProjectiveTransform")
      || isequal(op, "Less")
+     || isequal(op, "LogicalAnd")
      || isequal(op, "LoopCond")
      || isequal(op, "MatMul")
      || isequal(op, "MaxPool")
@@ -161,10 +169,10 @@ constexpr inline bool ShouldRegisterOp(const char op[]) {
      || isequal(op, "NextIteration")
      || isequal(op, "NoOp")
      || isequal(op, "NonMaxSuppressionV2")
+     || isequal(op, "NotEqual")
      || isequal(op, "Pack")
      || isequal(op, "Pad")
      || isequal(op, "Placeholder")
-     || isequal(op, "Pow")
      || isequal(op, "Range")
      || isequal(op, "Rank")
      || isequal(op, "RealDiv")
@@ -173,6 +181,7 @@ constexpr inline bool ShouldRegisterOp(const char op[]) {
      || isequal(op, "ResizeBilinear")
      || isequal(op, "Rsqrt")
      || isequal(op, "Shape")
+     || isequal(op, "Sigmoid")
      || isequal(op, "Slice")
      || isequal(op, "Softmax")
      || isequal(op, "Sqrt")
