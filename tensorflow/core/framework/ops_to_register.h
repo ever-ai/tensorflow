@@ -31,9 +31,10 @@
 "UnaryOp<CPUDevice, functor::abs<float>>",
 "BinaryOp<CPUDevice, functor::add<float>>",
 "BinaryOp<CPUDevice, functor::add<int32>>",
-<<<<<<< HEAD
 "ReductionOp<CPUDevice, bool, int32, Eigen::internal::AndReducer>",
+"ArgMaxOp<CPUDevice, float, int64>",
 "AssertOp",
+"AvgPoolingOp<CPUDevice, float>",
 "BiasOp<CPUDevice, float>",
 "CpuCastOp",
 "ConcatV2Op<CPUDevice, ::tensorflow::uint8>",
@@ -41,29 +42,15 @@
 "ConcatV2Op<CPUDevice, float>",
 "ConstantOp",
 "Conv2DOp<CPUDevice, float>",
+"DepthwiseConv2dNativeOp<CPUDevice, float>",
 "DequantizeOp<CPUDevice, quint8>",
-=======
-"BinaryOp<CPUDevice, functor::add<int64>>",
-"ReductionOp<CPUDevice, bool, int32, Eigen::internal::AndReducer>",
-"ArgMaxOp<CPUDevice, float, int64>",
-"AssertOp",
-"AvgPoolingOp<CPUDevice, float>",
-"BiasOp<CPUDevice, float>",
-"CpuCastOp",
-"ConcatV2Op<CPUDevice, float>",
-"ConstantOp",
-"Conv2DOp<CPUDevice, float>",
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
 "EnterOp",
 "ExitOp",
 "UnaryOp<CPUDevice, functor::exp<float>>",
 "ExpandDimsOp<int32>",
-<<<<<<< HEAD
 "FillOp<CPUDevice, ::tensorflow::uint8, int32>",
 "FillOp<CPUDevice, bool, int32>",
 "FillOp<CPUDevice, float, int32>",
-=======
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
 "UnaryOp<CPUDevice, functor::floor<double>>",
 "BinaryOp<CPUDevice, functor::safe_floor_div<int32>>",
 "FusedBatchNormOp<CPUDevice, float, float>",
@@ -75,10 +62,8 @@
 "IdentityOp",
 "ImageProjectiveTransform<CPUDevice, ::tensorflow::uint8>",
 "BinaryOp<CPUDevice, functor::less<int32>>",
-<<<<<<< HEAD
+"BinaryOp<CPUDevice, functor::less_equal<int64>>",
 "BinaryOp<CPUDevice, functor::logical_and>",
-=======
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
 "LoopCondOp",
 "MatMulOp<CPUDevice, float, false >",
 "MaxPoolingOp<CPUDevice, float>",
@@ -91,42 +76,31 @@
 "BinaryOp<CPUDevice, functor::minimum<int32>>",
 "BinaryOp<CPUDevice, functor::mul<double>>",
 "BinaryOp<CPUDevice, functor::mul<float>>",
-<<<<<<< HEAD
-=======
 "UnaryOp<CPUDevice, functor::neg<float>>",
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
 "UnaryOp<CPUDevice, functor::neg<int32>>",
 "NextIterationOp",
 "NoOp",
 "NonMaxSuppressionV2Op<CPUDevice>",
-<<<<<<< HEAD
 "BinaryOp<CPUDevice, functor::not_equal_to<float>>",
-=======
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
 "PackOp<CPUDevice, ::tensorflow::int32>",
 "PackOp<CPUDevice, ::tensorflow::int64>",
 "PackOp<CPUDevice, float>",
 "PadOp<CPUDevice, ::tensorflow::uint8, int32>",
 "PadOp<CPUDevice, float, int32>",
 "PlaceholderOp",
-<<<<<<< HEAD
-=======
 "BinaryOp<CPUDevice, functor::pow<float>>",
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
 "RangeOp<::tensorflow::int32>",
 "RankOp",
 "BinaryOp<CPUDevice, functor::div<double>>",
 "BinaryOp<CPUDevice, functor::div<float>>",
 "ReluOp<CPUDevice, float>",
+"Relu6Op<CPUDevice, float>",
 "ReshapeOp",
 "ResizeBilinearOp<CPUDevice, ::tensorflow::uint8>",
 "ResizeBilinearOp<CPUDevice, float>",
 "UnaryOp<CPUDevice, functor::rsqrt<float>>",
 "ShapeOp<int32>",
-<<<<<<< HEAD
 "UnaryOp<CPUDevice, functor::sigmoid<float>>",
-=======
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
 "SliceOp<CPUDevice, ::tensorflow::uint8>",
 "SliceOp<CPUDevice, float>",
 "SoftmaxOp<CPUDevice, float>",
@@ -136,18 +110,12 @@
 "SqueezeOp",
 "IdentityOp",
 "StridedSliceOp<CPUDevice, ::tensorflow::int32>",
-<<<<<<< HEAD
 "StridedSliceOp<CPUDevice, ::tensorflow::uint8>",
 "StridedSliceOp<CPUDevice, bool>",
 "StridedSliceOp<CPUDevice, float>",
 "BinaryOp<CPUDevice, functor::sub<float>>",
 "BinaryOp<CPUDevice, functor::sub<int32>>",
 "ReductionOp<CPUDevice, ::tensorflow::int64, int32, Eigen::internal::SumReducer<::tensorflow::int64>>",
-=======
-"StridedSliceOp<CPUDevice, float>",
-"BinaryOp<CPUDevice, functor::sub<float>>",
-"BinaryOp<CPUDevice, functor::sub<int32>>",
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
 "ReductionOp<CPUDevice, float, int32, Eigen::internal::SumReducer<float>>",
 "(SvdOp<float>)",
 "SwitchOp",
@@ -174,30 +142,21 @@ constexpr inline bool ShouldRegisterOp(const char op[]) {
      || isequal(op, "Abs")
      || isequal(op, "Add")
      || isequal(op, "All")
-<<<<<<< HEAD
-     || isequal(op, "Assert")
-=======
      || isequal(op, "ArgMax")
      || isequal(op, "Assert")
      || isequal(op, "AvgPool")
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
      || isequal(op, "BiasAdd")
      || isequal(op, "Cast")
      || isequal(op, "ConcatV2")
      || isequal(op, "Const")
      || isequal(op, "Conv2D")
-<<<<<<< HEAD
+     || isequal(op, "DepthwiseConv2dNative")
      || isequal(op, "Dequantize")
-=======
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
      || isequal(op, "Enter")
      || isequal(op, "Exit")
      || isequal(op, "Exp")
      || isequal(op, "ExpandDims")
-<<<<<<< HEAD
      || isequal(op, "Fill")
-=======
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
      || isequal(op, "Floor")
      || isequal(op, "FloorDiv")
      || isequal(op, "FusedBatchNorm")
@@ -207,10 +166,8 @@ constexpr inline bool ShouldRegisterOp(const char op[]) {
      || isequal(op, "Identity")
      || isequal(op, "ImageProjectiveTransform")
      || isequal(op, "Less")
-<<<<<<< HEAD
+     || isequal(op, "LessEqual")
      || isequal(op, "LogicalAnd")
-=======
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
      || isequal(op, "LoopCond")
      || isequal(op, "MatMul")
      || isequal(op, "MaxPool")
@@ -223,29 +180,21 @@ constexpr inline bool ShouldRegisterOp(const char op[]) {
      || isequal(op, "NextIteration")
      || isequal(op, "NoOp")
      || isequal(op, "NonMaxSuppressionV2")
-<<<<<<< HEAD
      || isequal(op, "NotEqual")
      || isequal(op, "Pack")
      || isequal(op, "Pad")
      || isequal(op, "Placeholder")
-=======
-     || isequal(op, "Pack")
-     || isequal(op, "Pad")
-     || isequal(op, "Placeholder")
      || isequal(op, "Pow")
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
      || isequal(op, "Range")
      || isequal(op, "Rank")
      || isequal(op, "RealDiv")
      || isequal(op, "Relu")
+     || isequal(op, "Relu6")
      || isequal(op, "Reshape")
      || isequal(op, "ResizeBilinear")
      || isequal(op, "Rsqrt")
      || isequal(op, "Shape")
-<<<<<<< HEAD
      || isequal(op, "Sigmoid")
-=======
->>>>>>> 860d2bed3f181c4cac71c19746b318729f4343d1
      || isequal(op, "Slice")
      || isequal(op, "Softmax")
      || isequal(op, "Sqrt")
