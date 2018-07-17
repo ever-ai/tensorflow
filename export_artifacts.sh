@@ -57,16 +57,16 @@ sed -i '' "s/model = \"[^\"]*\"/model = \"$MODEL_NAME\"/" "$PODSPEC_FILENAME"
 sed -i '' "s/bucket = \"[^\"]*\"/bucket = \"$BUCKET_NAME\"/" "$PODSPEC_FILENAME"
 sed -i '' -E "s/(.*\.version[[:space:]]*=[[:space:]]*)\"[^\"]*\"/\\1\"$VERSION\"/" "$PODSPEC_FILENAME"
 
-echo "*******************************************************************************************"
-echo "*                                                                                         *"
-echo "*                                   Done Exporting                                        *"
-echo "*                                                                                         *"
-echo "*   Make sure to check that libtensorflow-core-eai.a is in $EXPORT_DIRECTORY/lib          *"
-echo "*   This file is .gitignored in this repo because it is >400MB                            *"
-echo "*   If you haven't just rebuilt tensorflow from source you may need to manually add it.   *"
-echo "*                                                                                         *"
-echo "*******************************************************************************************"
-echo ""
+# echo "*******************************************************************************************"
+# echo "*                                                                                         *"
+# echo "*                                   Done Exporting                                        *"
+# echo "*                                                                                         *"
+# echo "*   Make sure to check that libtensorflow-core-eai.a is in $EXPORT_DIRECTORY/lib          *"
+# echo "*   This file is .gitignored in this repo because it is >400MB                            *"
+# echo "*   If you haven't just rebuilt tensorflow from source you may need to manually add it.   *"
+# echo "*                                                                                         *"
+# echo "*******************************************************************************************"
+# echo ""
 
 if [ "$BUCKET_NAME" = "ever-ai" ]; then
     if [ "$MODEL_NAME" = "" ]; then
@@ -74,21 +74,15 @@ if [ "$BUCKET_NAME" = "ever-ai" ]; then
     else
         MODEL_PATH="/$MODEL_NAME"
     fi
-    echo "Upload to S3 using:"
-    echo "aws s3 cp $EXPORT_DIRECTORY/tensorflow.zip \\"
-    echo "    \"s3://ever-ai/ios/tensorflow$MODEL_PATH/$VERSION/tensorflow.zip\" --acl public-read"
-    echo ""
-    echo "Add the podspec to the Specs repo using:"
-    echo "    pod repo push --allow-warnings --skip-import-validation ever-ai \\"
-    echo "        \"$EXPORT_DIRECTORY/$PODSPEC_FILENAME\""
+    echo "Uploading to S3... (s3://ever-ai/ios/tensorflow$MODEL_PATH/$VERSION/tensorflow.zip)"
+    aws s3 cp tensorflow.zip "s3://ever-ai/ios/tensorflow$MODEL_PATH/$VERSION/tensorflow.zip" --acl public-read
+    echo "Pushing Podspec to ever-ai Specs repo..."
+    pod repo push --allow-warnings --skip-import-validation ever-ai "$PODSPEC_FILENAME"
 elif [ "$BUCKET_NAME" = "download.everalbum.com" ]; then
-    echo "Upload to S3 using:"
-    echo "aws s3 cp $EXPORT_DIRECTORY/tensorflow.zip \\"
-    echo "    \"s3://download.everalbum.com/ios/deps/tensorflow/$VERSION/tensorflow.zip\" --acl public-read"
-    echo ""
-        echo "Add the podspec to the Specs repo using:"
-    echo "    pod repo push --allow-warnings --skip-import-validation everalbum \\"
-    echo "        \"$EXPORT_DIRECTORY/$PODSPEC_FILENAME\""
+    echo "Uploading to S3... (s3://download.everalbum.com/ios/deps/tensorflow/$VERSION/tensorflow.zip)"
+    aws s3 cp tensorflow.zip "s3://download.everalbum.com/ios/deps/tensorflow/$VERSION/tensorflow.zip" --acl public-read
+    echo "Pushing Podspec to everalbum Specs repo..."
+    pod repo push --allow-warnings --skip-import-validation everalbum "$PODSPEC_FILENAME"
 else
     echo "Updated:"
     echo "    $EXPORT_DIRECTORY/$PODSPEC_FILENAME"
