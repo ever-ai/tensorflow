@@ -309,3 +309,7 @@ tensorflow/core/ops/sparse_ops.cc
 tensorflow/core/ops/state_ops.cc
 tensorflow/core/ops/string_ops.cc
 tensorflow/core/ops/training_ops.cc
+tensorflow/contrib/image/kernels/image_ops.cc
+tensorflow/contrib/image/ops/image_ops.cc
+tensorflow/core/kernels/linalg_ops_common.cc
+tensorflow/core/kernels/svd_op_float.cc
