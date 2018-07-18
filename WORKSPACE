@@ -95,3 +95,16 @@ new_http_archive(
         "http://download.tensorflow.org/models/speech_commands_v0.01.zip",
     ],
 )
+
+android_ndk_repository(
+  name="androidndk",
+  path="/home/phacops/android-ndk-r14b",
+  api_level=14)
+
+
+android_sdk_repository(
+  name="androidsdk",
+  api_level=27,
+  path="/home/phacops",
+  build_tools_version="27.0.3")
+
