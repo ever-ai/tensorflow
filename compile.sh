@@ -38,3 +38,9 @@ do
 
 	gsutil cp bazel-bin/tensorflow/contrib/android/libtensorflow_inference.so gs://everai-mailbox/libtensorflow_inference-$arch.so
 done
+
+bazel \
+	--host_javabase=/usr/lib/jvm/java-8-openjdk-amd64 \
+	build \
+	//tensorflow/contrib/android:android_tensorflow_inference_java
+gsutil cp bazel-bin/tensorflow/contrib/android/libandroid_tensorflow_inference_java.jar gs://everai-mailbox/
