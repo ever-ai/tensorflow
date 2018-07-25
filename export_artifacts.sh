@@ -45,9 +45,11 @@ cp tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf-lite.a $EXPORT_D
 cp tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf.a $EXPORT_DIRECTORY/lib/libprotobuf-eai.a
 cp tensorflow/contrib/makefile/downloads/nsync/builds/lipo.ios.c++11/nsync.a $EXPORT_DIRECTORY/lib/nsync-eai.a
 
-echo "Creating archive..."
-
 cd $EXPORT_DIRECTORY
+
+cat ../tensorflow/core/framework/ops_to_register.h | grep "|| isequal(op," | sed -E 's/.*"(.+)".*/\1/g' > supported_ops.txt
+
+echo "Creating archive..."
 zip -rq tensorflow.zip ./*
 
 PODSPEC_FILENAME="Tensorflow-$MODEL_NAME.podspec"
@@ -76,11 +78,13 @@ if [ "$BUCKET_NAME" = "ever-ai" ]; then
     fi
     echo "Uploading to S3... (s3://ever-ai/ios/tensorflow$MODEL_PATH/$VERSION/tensorflow.zip)"
     aws s3 cp tensorflow.zip "s3://ever-ai/ios/tensorflow$MODEL_PATH/$VERSION/tensorflow.zip" --acl public-read
+    aws s3 cp supported_ops.txt "s3://ever-ai/ios/tensorflow$MODEL_PATH/$VERSION/supported_ops.txt" --acl public-read
     echo "Pushing Podspec to ever-ai Specs repo..."
     pod repo push --allow-warnings --skip-import-validation ever-ai "$PODSPEC_FILENAME"
 elif [ "$BUCKET_NAME" = "download.everalbum.com" ]; then
     echo "Uploading to S3... (s3://download.everalbum.com/ios/deps/tensorflow/$VERSION/tensorflow.zip)"
     aws s3 cp tensorflow.zip "s3://download.everalbum.com/ios/deps/tensorflow/$VERSION/tensorflow.zip" --acl public-read
+    aws s3 cp supported_ops.txt "s3://download.everalbum.com/ios/deps/tensorflow/$VERSION/supported_ops.txt" --acl public-read
     echo "Pushing Podspec to everalbum Specs repo..."
     pod repo push --allow-warnings --skip-import-validation everalbum "$PODSPEC_FILENAME"
 else
