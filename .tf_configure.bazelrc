@@ -1,24 +1,22 @@
 build --action_env PYTHON_BIN_PATH="/usr/bin/python"
 build --action_env PYTHON_LIB_PATH="/usr/local/lib/python2.7/dist-packages"
-build --force_python=py2
-build --host_force_python=py2
 build --python_path="/usr/bin/python"
 build --define with_jemalloc=true
-build --define with_gcp_support=false
-build --define with_hdfs_support=false
-build --define with_s3_support=false
-build --define with_kafka_support=false
+build --define with_gcp_support=true
+build:hdfs --define with_hdfs_support=false
+build:s3 --define with_s3_support=false
+build:kafka --define with_kafka_support=false
 build:xla --define with_xla_support=false
 build:gdr --define with_gdr_support=false
 build:verbs --define with_verbs_support=false
 build --action_env TF_NEED_OPENCL_SYCL="0"
 build --action_env TF_NEED_CUDA="0"
-build --action_env TF_DOWNLOAD_CLANG="0"
+build --config=opt
+build --config=monolithic
 build --define grpc_no_ares=true
 build:opt --define with_default_optimizations=true
-build --copt=-DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK
-build --host_copt=-DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK
 build:opt --cxxopt=-std=c++11
 build:opt --host_cxxopt=-std=c++11
 build:opt --copt=-DTENSORFLOW_DISABLE_META
 build:opt --host_copt=-DTENSORFLOW_DISABLE_META
+build --strip=always
