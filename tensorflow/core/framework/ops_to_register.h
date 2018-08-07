@@ -48,7 +48,6 @@
 "ExitOp",
 "UnaryOp<CPUDevice, functor::exp<float>>",
 "ExpandDimsOp<int32>",
-"FillOp<CPUDevice, ::tensorflow::uint8, int32>",
 "FillOp<CPUDevice, bool, int32>",
 "FillOp<CPUDevice, float, int32>",
 "UnaryOp<CPUDevice, functor::floor<double>>",
@@ -60,10 +59,12 @@
 "BinaryOp<CPUDevice, functor::greater_equal<float>>",
 "BinaryOp<CPUDevice, functor::greater_equal<int32>>",
 "IdentityOp",
-"ImageProjectiveTransform<CPUDevice, ::tensorflow::uint8>",
+"ImageProjectiveTransform<CPUDevice, float>",
+"BinaryOp<CPUDevice, functor::less<float>>",
 "BinaryOp<CPUDevice, functor::less<int32>>",
-"BinaryOp<CPUDevice, functor::less_equal<int64>>",
+"BinaryOp<CPUDevice, functor::less_equal<int32>>",
 "BinaryOp<CPUDevice, functor::logical_and>",
+"BinaryOp<CPUDevice, functor::logical_or>",
 "LoopCondOp",
 "MatMulOp<CPUDevice, float, false >",
 "MaxPoolingOp<CPUDevice, float>",
@@ -80,12 +81,13 @@
 "UnaryOp<CPUDevice, functor::neg<int32>>",
 "NextIterationOp",
 "NoOp",
-"NonMaxSuppressionV2Op<CPUDevice>",
+"NonMaxSuppressionV3Op<CPUDevice>",
 "BinaryOp<CPUDevice, functor::not_equal_to<float>>",
 "PackOp<CPUDevice, ::tensorflow::int32>",
 "PackOp<CPUDevice, ::tensorflow::int64>",
+"PackOp<CPUDevice, ::tensorflow::uint8>",
+"PackOp<CPUDevice, bool>",
 "PackOp<CPUDevice, float>",
-"PadOp<CPUDevice, ::tensorflow::uint8, int32>",
 "PadOp<CPUDevice, float, int32>",
 "PlaceholderOp",
 "BinaryOp<CPUDevice, functor::pow<float>>",
@@ -94,7 +96,6 @@
 "BinaryOp<CPUDevice, functor::div<double>>",
 "BinaryOp<CPUDevice, functor::div<float>>",
 "ReluOp<CPUDevice, float>",
-"Relu6Op<CPUDevice, float>",
 "ReshapeOp",
 "ResizeBilinearOp<CPUDevice, ::tensorflow::uint8>",
 "ResizeBilinearOp<CPUDevice, float>",
@@ -110,12 +111,9 @@
 "SqueezeOp",
 "IdentityOp",
 "StridedSliceOp<CPUDevice, ::tensorflow::int32>",
-"StridedSliceOp<CPUDevice, ::tensorflow::uint8>",
-"StridedSliceOp<CPUDevice, bool>",
 "StridedSliceOp<CPUDevice, float>",
 "BinaryOp<CPUDevice, functor::sub<float>>",
 "BinaryOp<CPUDevice, functor::sub<int32>>",
-"BinaryOp<CPUDevice, functor::sub<int64>>",
 "ReductionOp<CPUDevice, ::tensorflow::int64, int32, Eigen::internal::SumReducer<::tensorflow::int64>>",
 "ReductionOp<CPUDevice, float, int32, Eigen::internal::SumReducer<float>>",
 "(SvdOp<float>)",
@@ -169,6 +167,7 @@ constexpr inline bool ShouldRegisterOp(const char op[]) {
      || isequal(op, "Less")
      || isequal(op, "LessEqual")
      || isequal(op, "LogicalAnd")
+     || isequal(op, "LogicalOr")
      || isequal(op, "LoopCond")
      || isequal(op, "MatMul")
      || isequal(op, "MaxPool")
@@ -180,7 +179,7 @@ constexpr inline bool ShouldRegisterOp(const char op[]) {
      || isequal(op, "Neg")
      || isequal(op, "NextIteration")
      || isequal(op, "NoOp")
-     || isequal(op, "NonMaxSuppressionV2")
+     || isequal(op, "NonMaxSuppressionV3")
      || isequal(op, "NotEqual")
      || isequal(op, "Pack")
      || isequal(op, "Pad")
@@ -190,7 +189,6 @@ constexpr inline bool ShouldRegisterOp(const char op[]) {
      || isequal(op, "Rank")
      || isequal(op, "RealDiv")
      || isequal(op, "Relu")
-     || isequal(op, "Relu6")
      || isequal(op, "Reshape")
      || isequal(op, "ResizeBilinear")
      || isequal(op, "Rsqrt")
