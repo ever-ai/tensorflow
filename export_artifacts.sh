@@ -1,16 +1,25 @@
 #!/bin/bash
 #
 # This script will export all of the required header files and static libraries necessary to run tensorflow on iOS
-#
 
-read -p "Bucket name [ever-ai]: " BUCKET_NAME
-BUCKET_NAME="${BUCKET_NAME:-ever-ai}"
+if [ "$#" -gt "1" ]; then
+    BUCKET_NAME="$1"
+    MODEL_NAME="$2"
+    if [ "$#" = "3" ]; then
+        VERSION="$3"
+    else
+        VERSION=`(git describe HEAD --tags --abbrev=0 || echo "[[VERSION]]") | sed -e "s/^v//"`
+    fi
+else
+    read -p "Bucket name [ever-ai]: " BUCKET_NAME
+    BUCKET_NAME="${BUCKET_NAME:-ever-ai}"
 
-read -p "Model name: " MODEL_NAME
+    read -p "Model name: " MODEL_NAME
 
-VERSION=`(git describe HEAD --tags --abbrev=0 || echo "[[VERSION]]") | sed -e "s/^v//"`
-read -p "Tensorflow version [$VERSION]: " INPUT_VERSION
-VERSION="${INPUT_VERSION:-$VERSION}"
+    VERSION=`(git describe HEAD --tags --abbrev=0 || echo "[[VERSION]]") | sed -e "s/^v//"`
+    read -p "Tensorflow version [$VERSION]: " INPUT_VERSION
+    VERSION="${INPUT_VERSION:-$VERSION}"
+fi
 
 EXPORT_DIRECTORY=./tensorflow_export
 
