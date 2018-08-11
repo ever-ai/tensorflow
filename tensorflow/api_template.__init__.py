@@ -34,7 +34,8 @@ try:
   del estimator_api
   del os
 except (ImportError, AttributeError):
-  print('tf.estimator package not installed.')
+  # print('tf.estimator package not installed.')
+  pass
 
 # API IMPORTS PLACEHOLDER
 

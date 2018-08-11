@@ -2,7 +2,6 @@
 .ipynb_checkpoints
 node_modules
 /.bazelrc
-/.tf_configure.bazelrc
 /bazel-*
 /bazel_pip
 /tools/python_bin_path.sh
@@ -29,6 +28,7 @@ Podfile.lock
 /tensorflow/contrib/lite/examples/ios/simple/data/*.tflite
 xcuserdata/**
 /api_init_files_list.txt
+*.whl
 
 # Android
 .gradle
