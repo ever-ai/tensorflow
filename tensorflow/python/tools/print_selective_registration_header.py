@@ -38,6 +38,8 @@ from __future__ import print_function
 import argparse
 import sys
 
+import tensorflow.contrib.image
+
 from tensorflow.python.platform import app
 from tensorflow.python.tools import selective_registration_header_lib
 

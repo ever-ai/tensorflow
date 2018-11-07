@@ -5048,6 +5048,12 @@ filegroup(
         "unpack_op.cc",
         "variable_ops.cc",
         "variable_ops.h",
+	"image_ops.cc",
+	"image_ops.h",
+	"linalg_ops_common.cc",
+	"linalg_ops_common.h",
+	"svd_op_float.cc",
+	"svd_op_impl.h",
     ],
 )
 
